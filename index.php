@@ -2,12 +2,14 @@
 require 'user.class.php';
 
 
-$MAC = exec('getmac');
+if (!isset($_COOKIE['userid'])) {
+    setcookie('userid', 'userid_test', time()+60*60*24*30, '/');
+}else{
+echo "de coockie was al geset " . $_COOKIE['userid'];
+}
+echo "de coockie is nog nooit geset en nu dus wel " . $_COOKIE['userid'];
 
-$MAC = strtok($MAC, " ");
 
-$user = new user($MAC);
-
-echo $user->getmac();
+//$user = new user($MAC);
 
 ?>
