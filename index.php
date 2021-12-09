@@ -1,12 +1,33 @@
 <?php
-// PHP code to get the MAC address of Client
-$MAC = exec('getmac');
-  
-// Storing 'getmac' value in $MAC
-//$MAC = strtok($MAC, ' ');
-echo $MAC;
+
+require "user.class.php";
+include "DBconfig.php";
+
+if (!isset($_COOKIE['user'])) {
+  $randomNumber = rand(100, 999);
+  $randomTime = time();
+  $random = "";
+  $random .= $randomTime;
+  $random .= $randomNumber;
+  setcookie("user", $random, 0, "/");
+  header("Location: index.php");
+}else {
+$userid = $_COOKIE['user'];
+$user = new user($userid);
+echo $user->getid();
+$conn = new PDO("mysql:host=$hostname;dbname=poll", $userName, $Password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "INSERT INTO (userid) VALUES ($userid)";
+$conn->exec($sql);
+
+}
+
+
+
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

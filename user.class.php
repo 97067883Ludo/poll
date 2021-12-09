@@ -2,15 +2,12 @@
 
 class user{
     
-    public $mac;
+    public $userid;
 
-    public function __construct($mac){
-        $this->mac = $mac;
+    public function __construct($userid){
+        $this->userid = $userid;
     }
-    public function getmacfromdb(){
-        
-    }
-    public function getmac(){
-        return $this->mac;
+    public function getid(){
+        return $this->userid;
     }
 }
