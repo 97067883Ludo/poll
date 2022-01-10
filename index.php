@@ -8,13 +8,20 @@ if (!isset($_COOKIE['user'])) {
     $user = new user();
     $user->createUser();
     echo $user->getid();
-}else {
-$userid = $_COOKIE['user'];
-$user = new user();
-$user->setUser($userid);
-echo $user->getid();
-
 }
+else{
+    $userid = $_COOKIE['user'];
+    $user = new user();
+    $user->setUser($userid);
+    echo $user->getid();
+}
+
+if ($user->checkUserInDB()) {
+
+}else {
+    $user->setUserInDB();
+}
+
 
 
 
