@@ -5,6 +5,7 @@ require 'card.class.php';
 include "DBconfig.php";
 
 
+
 if (!isset($_COOKIE['user'])) {
     $user = new user();
     $user->createUserId();
@@ -19,9 +20,17 @@ if (!$user->checkUserIdInDB()) {
     $user->setUserIdInDB();
 }
 
-
-
-
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+    switch ($action) {
+        case 'Eens':
+            $user->setVote(1);
+            break;
+        case 'Oneens':
+            $user->setVote(0);
+            break;
+    }
+}
 
 ?>
 
@@ -47,7 +56,18 @@ if (!$user->checkUserIdInDB()) {
     <?php
 $card = new card();
 $card->setCard();
-$card->getCard();
+
+    switch ($user->getVote()) {
+        case 1:
+            
+            break;
+        case 0:
+
+            break;
+        default:
+            $card->getCard();
+            break;
+    }
     ?>
 </div>
 </div>

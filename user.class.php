@@ -5,10 +5,6 @@ class user{
     public $userid;
     public $database;
 
-    public function setDBconnection(){
-
-    }
-
     public function getid(){
         return $this->userid;
     }
@@ -49,6 +45,7 @@ class user{
           } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
           }
+          $conn = NULL;
 
     }
 
@@ -67,6 +64,53 @@ class user{
           } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
           }
+          $conn = NULL;
+    }
 
+    public function getVote(){
+        include 'DBconfig.php';
+      
+        try {
+            $conn = new PDO("mysql:host=$hostname;dbname=poll", $userName, $Password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+            $stmt = $conn->prepare("SELECT vote FROM votes WHERE userid = ?");
+            $stmt->execute([$this->userid]);
+            $vote = $stmt->fetch();
+
+            foreach ($vote as $value) {
+                switch ($value) {
+                    case NULL:
+                        return NULL;
+                    case 0:
+                        return 0;
+                    case 1:
+                        return 1;
+                }
+            }
+
+        }   catch(PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+          $conn = NULL;
+    }
+
+    public function setVote($Voted){
+        
+        include 'DBconfig.php';
+      
+        try {
+            $conn = new PDO("mysql:host=$hostname;dbname=poll", $userName, $Password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+            $stmt = $conn->prepare("UPDATE votes set vote = ? WHERE userid = ?");
+            $stmt->execute([$Voted, $this->userid]);
+
+          } catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+          }
+          $conn = NULL;
     }
 }

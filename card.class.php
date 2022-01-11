@@ -24,13 +24,11 @@ class card{
         <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title">'.$this->vraagstelling.'</h5>
-        <p class="card-text"><a href="#" class="btn btn-success">Eens</a>
-        <a href="#" class="btn btn-danger">Oneens</a></p>
+        <p class="card-text"><a href="?action=Eens" class="btn btn-success">Eens</a>
+        <a href="?action=Oneens" class="btn btn-danger">Oneens</a></p>
         </div>
         </div>
-        
         ';
-        
     }
 
 }
