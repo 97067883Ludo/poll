@@ -59,10 +59,10 @@ $card->setCard();
 
     switch ($user->getVote()) {
         case '1':
-            $card->getDisabledCard();
+            $card->getDisabledCardWithnumbers();
             break;
         case '0':
-            $card->getDisabledCard();
+            $card->getDisabledCardWithnumbers();
             break;
         default:
             $card->getCard();
