@@ -58,11 +58,11 @@ $card = new card();
 $card->setCard();
 
     switch ($user->getVote()) {
-        case 1:
-            
+        case '1':
+            $card->getDisabledCard();
             break;
-        case 0:
-
+        case '0':
+            $card->getDisabledCard();
             break;
         default:
             $card->getCard();

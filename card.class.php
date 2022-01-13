@@ -24,8 +24,19 @@ class card{
         <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title">'.$this->vraagstelling.'</h5>
-        <p class="card-text"><a href="?action=Eens" class="btn btn-success">Eens</a>
-        <a href="?action=Oneens" class="btn btn-danger">Oneens</a></p>
+        <p class="card-text"><button class="btn btn-success"><a href="?action=Eens" class="btn btn-success">Eens</a></button>
+        <button class="btn btn-danger"><a href="?action=Oneens" class="btn btn-danger">Oneens</a></button></p>
+        </div>
+        </div>
+        ';
+    }
+    public function getDisabledCard(){
+        echo'
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">'.$this->vraagstelling.'</h5>
+        <p class="card-text"><button class="btn btn-success" disabled="disabled"><a href="?action=Eens" class="btn btn-success">Eens</a></button>
+        <button class="btn btn-danger" disabled="disabled"><a href="?action=Oneens" class="btn btn-danger">Oneens</a></button></p>
         </div>
         </div>
         ';
